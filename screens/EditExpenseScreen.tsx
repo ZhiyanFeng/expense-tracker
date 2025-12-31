@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
 
-const ExpenseEditScreen = ({ /* props */}) => {
+const EditExpenseScreen = ({ /* props */}) => {
     return (
         <View style={styles.container}>
             <Text>ExpenseEditScreen Component</Text>
@@ -18,4 +18,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ExpenseEditScreen;
+export default EditExpenseScreen;

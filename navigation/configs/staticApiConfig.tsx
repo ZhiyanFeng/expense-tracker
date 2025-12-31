@@ -1,10 +1,11 @@
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import RecentExpenseScreen from "../../screens/RecentExpenseScreen";
-import ExpenseEditScreen from "../../screens/ExpenseEditScreen";
+import EditExpenseScreen from "../../screens/EditExpenseScreen";
 import {createStaticNavigation, StaticParamList} from "@react-navigation/native";
 import AllExpenseScreen from "../../screens/AllExpenseScreen";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import AddExpenseScreen from "../../screens/AddExpenseScreen";
 
 
 
@@ -16,8 +17,11 @@ const HomeStack = createNativeStackNavigator({
             }
         },
         ExpenseEdit: {
-            screen: ExpenseEditScreen,
+            screen: EditExpenseScreen,
         },
+        ExpenseAdd: {
+            screen: AddExpenseScreen,
+        }
     },
 });
 const RootTabs = createBottomTabNavigator({

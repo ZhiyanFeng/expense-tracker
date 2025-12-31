@@ -2,7 +2,7 @@ import React, {useEffect, useLayoutEffect} from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
 import {useNavigation} from "@react-navigation/native";
 import {IconButton} from "../components/IconButton";
-import ExpenseEditScreen from "./ExpenseEditScreen";
+import EditExpenseScreen from "./EditExpenseScreen";
 
 
 const RecentExpenseScreen = ({ /* props */}) => {
@@ -11,7 +11,7 @@ const RecentExpenseScreen = ({ /* props */}) => {
     const handleIconPress = () => {
         navigation.navigate('HomeTab',
             {
-                screen: 'ExpenseEdit'
+                screen: 'ExpenseAdd'
             }
         );
     }

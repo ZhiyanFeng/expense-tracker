@@ -1,7 +1,7 @@
 // import React from 'react';
 // import {View, Text, StyleSheet} from 'react-native';
 // import {NavigationContainer} from "@react-navigation/native";
-// import ExpenseEditScreen from "../screens/ExpenseEditScreen";
+// import EditExpenseScreen from "../screens/EditExpenseScreen";
 // import {createNativeStackNavigator} from '@react-navigation/native-stack';
 // import TabNavigator from "./TabNavigator";
 // import {RootStackParamList} from "./Types";
@@ -14,7 +14,7 @@
 //         <NavigationContainer>
 //             <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
 //                 <Stack.Screen name="Home" component={TabNavigator}/>
-//                 <Stack.Screen name="ExpenseEdit" component={ExpenseEditScreen} />
+//                 <Stack.Screen name="ExpenseEdit" component={EditExpenseScreen} />
 //             </Stack.Navigator>
 //         </NavigationContainer>
 // );
