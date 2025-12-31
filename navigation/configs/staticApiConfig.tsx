@@ -13,7 +13,6 @@ const HomeStack = createNativeStackNavigator({
         Home: {
             screen: RecentExpenseScreen,
             options: {
-
             }
         },
         ExpenseEdit: {
@@ -28,6 +27,8 @@ const RootTabs = createBottomTabNavigator({
             screen: HomeStack,
             options: {
                 headerShown: false,
+                // headerRight: () => <Ionicons name="share" size={24} />,
+
                 tabBarLabel: 'Recent Expense',
                 tabBarIcon: ({ focused }) => (
                     <Ionicons name={focused ? 'document' : 'document-outline'} size={25}/>
