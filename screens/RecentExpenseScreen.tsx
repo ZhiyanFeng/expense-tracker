@@ -1,8 +1,10 @@
-import React, {useEffect, useLayoutEffect} from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native';
+import React, {useEffect, useLayoutEffect, useMemo} from 'react';
+import {View, Text, StyleSheet, Button, FlatList} from 'react-native';
 import {useNavigation} from "@react-navigation/native";
 import {IconButton} from "../components/IconButton";
 import EditExpenseScreen from "./EditExpenseScreen";
+import {store} from "../store/store";
+import {useSelector} from "react-redux";
 
 
 const RecentExpenseScreen = ({ /* props */}) => {
@@ -24,9 +26,18 @@ const RecentExpenseScreen = ({ /* props */}) => {
         });
     }, [navigation, handleIconPress]);
 
+    const recentExpenses = useSelector(state => );
+
+
     return (
         <View style={styles.container}>
-            <Text>RecentExpenseScreen Component</Text>
+            <FlatList
+                data={recentExpenses}
+                keyExtractor={(item) => item.id}
+                renderItem={}
+            >
+
+            </FlatList>
         </View>
     );
 };
