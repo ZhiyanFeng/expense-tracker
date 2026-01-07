@@ -18,7 +18,8 @@ const expenseSlice = createSlice({
             console.log(state.Expenses);
         },
         deleteExpense: (state, action) => {
-            state.Expenses.splice(state.Expenses.indexOf(action.payload), 1);
+            console.log("delete payload", action.payload);
+            state.Expenses.splice(state.Expenses.findIndex(expenses => expenses.id === action.payload), 1);
         },
         editExpense: (state, action) => {
             const id = action.payload.id;

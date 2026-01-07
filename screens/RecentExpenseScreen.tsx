@@ -7,6 +7,7 @@ import {selectResentExpense} from "../state/expenseSlice";
 import {Expense} from "../types/interfaces";
 import {SafeAreaView} from 'react-native-safe-area-context';
 import FlatListComponent from "../components/FlatListComponent";
+import EditExpenseModal from "../components/EditExpenseModal";
 
 
 const RecentExpenseScreen = ({ /* props */}) => {
@@ -31,7 +32,7 @@ const RecentExpenseScreen = ({ /* props */}) => {
     const recentExpenses = useSelector(selectResentExpense);
 
     return (
-        <FlatListComponent data={recentExpenses} title={'Last 7 days'}></FlatListComponent>
+            <FlatListComponent data={recentExpenses} title={'Last 7 days'}></FlatListComponent>
     );
 };
 
@@ -39,9 +40,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-
-
-
 });
 
 export default RecentExpenseScreen;

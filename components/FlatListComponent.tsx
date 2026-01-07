@@ -1,6 +1,7 @@
-import React, {useMemo} from 'react';
-import {View, Text, StyleSheet, FlatList, ListRenderItem} from 'react-native';
+import React, {useMemo, useState} from 'react';
+import {View, Text, StyleSheet, FlatList, ListRenderItem, Pressable} from 'react-native';
 import {Expense} from "../types/interfaces";
+import EditExpenseModal from "./EditExpenseModal";
 
 interface IProps {
     data: Expense[],
@@ -11,6 +12,9 @@ const FlatListComponent = ({data, title}: IProps) => {
     const total = useMemo(() => {
         return data.reduce((acc, cur) => acc + Number(cur.price) * Number(cur.quantity), 0);
     }, [data]);
+
+    const [modalVisible, setModalVisible] = useState(false);
+    const [selectedExpenseId, setSelectedExpenseId] = useState('');
 
     const ListHeader = () => {
         return (
@@ -25,20 +29,31 @@ const FlatListComponent = ({data, title}: IProps) => {
 
         )
     }
+
+    const handleOnPress = (id: string) => {
+        setModalVisible(true);
+        setSelectedExpenseId(id);
+    }
+    const handleOnClose = () => {
+        setModalVisible(false);
+    }
     const renderItem: ListRenderItem<Expense> = ({item}) => (
-        <View style={styles.flatListItem}>
-            <View style={styles.itemName}>
-                <Text style={styles.flatListText}>{item.name}</Text>
-                <Text> {item.date}</Text>
+        <Pressable onPress={() => handleOnPress(item.id)}>
+            <View style={styles.flatListItem}>
+                <View style={styles.itemName}>
+                    <Text style={styles.flatListText}>{item.name}</Text>
+                    <Text> {item.date}</Text>
+                </View>
+                <View style={styles.itemPrice}>
+                    <Text>{item.price}</Text>
+                </View>
             </View>
-            <View style={styles.itemPrice}>
-                <Text>{item.price}</Text>
-            </View>
-        </View>
+        </Pressable>
 
     );
     return (
         <View style={styles.safeArea}>
+
             <View style={styles.container}>
                 <FlatList
                     data={data}
@@ -47,6 +62,7 @@ const FlatListComponent = ({data, title}: IProps) => {
                     ListHeaderComponent={<ListHeader/>}
                 >
                 </FlatList>
+                <EditExpenseModal isVisible={modalVisible} id={selectedExpenseId} onClose={handleOnClose}></EditExpenseModal>
             </View>
         </View>
     );
