@@ -1,16 +1,17 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
 import {RecentExpenseScreenProps} from "../navigation/Types";
+import FlatListComponent from "../components/FlatListComponent";
+import {useSelector} from "react-redux";
+import {RootState} from "../state/store";
 
 
 const AllExpenseScreen = ({} : RecentExpenseScreenProps
 ) => {
-
+    const allExpenses =useSelector((state:RootState) => state.expense).Expenses;
 
     return (
-        <View style={styles.container}>
-            <Text>AllExpenseScreen Component</Text>
-        </View>
+       <FlatListComponent data={allExpenses} title='Total'></FlatListComponent>
     );
 };
 

@@ -8,7 +8,7 @@ import {store} from "./state/store";
 export default function App() {
     return (
         <SafeAreaProvider>
-            <StatusBar style="light"/>
+            <StatusBar style="dark"/>
             <Provider store={store}>
                 <Navigation>
 

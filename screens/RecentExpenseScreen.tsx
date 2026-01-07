@@ -28,25 +28,10 @@ const RecentExpenseScreen = ({ /* props */}) => {
         });
     }, [navigation, handleIconPress]);
 
-    // const recentExpenses = useSelector(selectResentExpense);
-    // ListRenderItem<T> helps type the { item } destructuring
-    const recentExpenses = [{
-        id: '1',
-        name: "RecentExpense",
-        price: '1',
-        quantity: '1',
-        date: new Date().toDateString(),
-    }, {
-        id: '2',
-        name: "RecentExpense",
-        price: '2',
-        quantity: '2',
-        date: new Date().toDateString(),
-    }]
-
+    const recentExpenses = useSelector(selectResentExpense);
 
     return (
-        <FlatListComponent data={recentExpenses }></FlatListComponent>
+        <FlatListComponent data={recentExpenses} title={'Last 7 days'}></FlatListComponent>
     );
 };
 

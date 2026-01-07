@@ -1,35 +1,38 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {View, Text, StyleSheet, FlatList, ListRenderItem} from 'react-native';
 import {Expense} from "../types/interfaces";
 
 interface IProps {
     data: Expense[],
+    title: string,
 }
 
-const FlatListComponent = ({data}: IProps) => {
+const FlatListComponent = ({data, title}: IProps) => {
+    const total = useMemo(() => {
+        return data.reduce((acc, cur) => acc + Number(cur.price) * Number(cur.quantity), 0);
+    }, [data]);
+
     const ListHeader = () => {
         return (
             <View style={styles.headerContainer}>
                 <View style={styles.header}>
-                    <Text style={styles.headerText}>Last 7 days</Text>
+                    <Text style={styles.headerText}>{title}</Text>
                 </View>
                 <View style={styles.totalPrice}>
-                    <Text>$</Text>
+                    <Text>$ {total}</Text>
                 </View>
             </View>
 
         )
-
-
     }
     const renderItem: ListRenderItem<Expense> = ({item}) => (
         <View style={styles.flatListItem}>
             <View style={styles.itemName}>
-                <Text style={styles.flatListText}>${item.name} {item.price}</Text>
+                <Text style={styles.flatListText}>{item.name}</Text>
                 <Text> {item.date}</Text>
             </View>
             <View style={styles.itemPrice}>
-                <Text>10</Text>
+                <Text>{item.price}</Text>
             </View>
         </View>
 
