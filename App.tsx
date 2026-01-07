@@ -3,7 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {SafeAreaProvider} from "react-native-safe-area-context";
 import {Navigation} from "./navigation/configs/staticApiConfig";
 import {Provider} from "react-redux";
-import {store} from "./store/store";
+import {store} from "./state/store";
 
 export default function App() {
     return (

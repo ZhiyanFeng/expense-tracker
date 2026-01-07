@@ -3,5 +3,5 @@ export interface Expense {
     name: string;
     quantity: string;
     price: string;
-    date: Date;
+    date: string;
 }

@@ -14,6 +14,7 @@ const NativeDatePicker = ({onDateConfirm}: Props) => {
         const currentDate = selectedDate || date;
         setShow(Platform.OS === 'ios'); // For iOS, the picker is usually in a modal so we close it
         setDate(currentDate);
+        handleDateConfirm(currentDate);
     };
 
     const showDatePicker = () => {

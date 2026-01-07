@@ -1,48 +1,41 @@
 // AddExpenseScreen.tsx
-import React, {useState} from 'react';
-import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
+import React, {useMemo, useState} from 'react';
+import {View, Text, TextInput, Button, StyleSheet, Keyboard} from 'react-native';
 import {Expense} from "../types/interfaces";
 import NativeDatePicker from "../components/NativeDatePicker";
 import {DateTimePickerEvent} from "@react-native-community/datetimepicker";
-import {addExpense} from "../store/expenseSlice";
-import {store} from "../store/store";
-import {useDispatch} from "react-redux";
+import {addExpense} from "../state/expenseSlice";
+import {store, RootState} from "../state/store";
+import {useDispatch, useSelector} from "react-redux";
 
 
-
-// Assume the Expense interface is imported or defined above
-interface AddExpenseScreenProps {
-    onAddExpense: (item: Expense) => void;
-    // Add navigation props here if using React Navigation
-}
-
-const AddExpenseScreen = ({onAddExpense}: AddExpenseScreenProps) => {
+const AddExpenseScreen = () => {
     const [id, setId] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [quantity, setQuantity] = useState<string>('');
     const [price, setPrice] = useState<string>('');
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState<string>('');
     const dispatch = useDispatch();
 
-
     const handleSave = () => {
+        console.log("date as id", id);
         if (name.trim() && quantity.trim()) {
             const newExpense: Expense = {
-                id: Date.now().toString(), // Simple unique ID generation
-                name,
+                id: id, // Simple unique ID generation
+                name: name,
                 quantity: quantity,
+                price: price,
                 date: date,
-                price: price
             };
-            onAddExpense(newExpense);
             // Clear form
             setId('');
             setName('');
             setQuantity('');
             setPrice('');
-            setDate(new Date());
+            setDate('');
 
             dispatch(addExpense(newExpense));
+            Keyboard.dismiss();
         }
     };
 
@@ -63,7 +56,11 @@ const AddExpenseScreen = ({onAddExpense}: AddExpenseScreenProps) => {
     };
 
     const handleDateConfirm = (date: Date) => {
-        setDate(date);
+        const dateIosString = date.toISOString();
+        const dateString = dateIosString.split('T')[0];
+
+        setId(dateIosString);
+        setDate(dateString);
     }
 
     return (
