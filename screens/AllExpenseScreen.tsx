@@ -8,7 +8,7 @@ import {RootState} from "../state/store";
 
 const AllExpenseScreen = ({} : RecentExpenseScreenProps
 ) => {
-    const allExpenses =useSelector((state:RootState) => state.expense).Expenses;
+    const allExpenses =useSelector((state:RootState) => state.expense).expenses;
 
     return (
        <FlatListComponent data={allExpenses} title='Total'></FlatListComponent>

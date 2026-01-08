@@ -16,7 +16,7 @@ const RecentExpenseScreen = ({ /* props */}) => {
     const handleIconPress = () => {
         navigation.navigate('HomeTab',
             {
-                screen: 'ExpenseAdd'
+                screen: 'AddExpense',
             }
         );
     }

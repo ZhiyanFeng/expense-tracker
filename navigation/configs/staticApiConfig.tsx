@@ -1,29 +1,29 @@
-import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import {createNativeStackNavigator, NativeStackScreenProps} from "@react-navigation/native-stack";
 import RecentExpenseScreen from "../../screens/RecentExpenseScreen";
 import EditExpenseScreen from "../../screens/EditExpenseScreen";
-import {createStaticNavigation, StaticParamList} from "@react-navigation/native";
+import {createStaticNavigation, NavigatorScreenParams, StaticParamList, StaticScreenProps } from "@react-navigation/native";
 import AllExpenseScreen from "../../screens/AllExpenseScreen";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import AddExpenseScreen from "../../screens/AddExpenseScreen";
+export type ExpenseEditParams = { id: string, label: string };
 
-
-
-const HomeStack = createNativeStackNavigator({
+export const HomeStack = createNativeStackNavigator({
     screens: {
         Home: {
             screen: RecentExpenseScreen,
-            options: {
-            }
         },
-        ExpenseEdit: {
+        EditExpense: {
             screen: EditExpenseScreen,
+            initialParams: {id: '', label: 'Add Expense'},
         },
-        ExpenseAdd: {
+        AddExpense: {
             screen: AddExpenseScreen,
         }
     },
 });
+
+
 const RootTabs = createBottomTabNavigator({
 
     screens: {
@@ -32,7 +32,6 @@ const RootTabs = createBottomTabNavigator({
             options: {
                 headerShown: false,
                 // headerRight: () => <Ionicons name="share" size={24} />,
-
                 tabBarLabel: 'Recent Expense',
                 tabBarIcon: ({ focused }) => (
                     <Ionicons name={focused ? 'document' : 'document-outline'} size={25}/>
@@ -53,6 +52,7 @@ const RootTabs = createBottomTabNavigator({
 
 // Infer the types from your root-most navigator
 type RootStackParamList = StaticParamList<typeof RootTabs>;
+
 
 declare global {
     namespace ReactNavigation {

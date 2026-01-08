@@ -6,11 +6,13 @@ import {useDispatch} from "react-redux";
 import {deleteExpense} from "../state/expenseSlice";
 import {useNavigation} from "@react-navigation/native";
 
+
 interface Props {
     isVisible: boolean;
     id: string;
     onClose: () => void;
 }
+
 
 
 const EditExpenseModal = ({isVisible, id, onClose}: Props) => {
@@ -28,14 +30,13 @@ const EditExpenseModal = ({isVisible, id, onClose}: Props) => {
     const navigation = useNavigation();
 
     const handleEdit = () => {
-        navigation.navigate('HomeTab',
-            {
-                screen: 'ExpenseEdit'
+        navigation.navigate('HomeTab', {
+            screen: 'EditExpense',
+            params: {id:id, label:'Edit Expense'}
             }
         );
         onClose();
     }
-
 
     return (
         <Modal
