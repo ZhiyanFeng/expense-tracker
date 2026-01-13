@@ -1,9 +1,7 @@
 import React, {useEffect} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {SafeAreaProvider} from "react-native-safe-area-context";
 import {StatusBar} from "expo-status-bar";
-import {Provider, useDispatch} from "react-redux";
-import {AppDispatch, store} from "./state/store";
 import {Navigation} from "./navigation/configs/staticApiConfig";
 import {fetchAllExpenses} from "./state/expenseSlice";
 import {useAppDispatch} from "./hooks/hook";
@@ -14,11 +12,12 @@ const MainComponent = ({ /* props */}) => {
     useEffect(() => {
         dispatch(fetchAllExpenses());
     })
+
+
     return (
         <SafeAreaProvider>
             <StatusBar style="dark"/>
                 <Navigation>
-
                 </Navigation>
         </SafeAreaProvider>
     );
