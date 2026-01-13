@@ -1,11 +1,14 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, Tuple } from '@reduxjs/toolkit';
 import  expenseReducer from "./expenseSlice";
+import devToolsEnhancer from 'redux-devtools-expo-dev-plugin';
 
 export const store = configureStore({
     reducer: {
         // Add your reducers here
        expense: expenseReducer,
     },
+    devTools: false,
+    enhancers: (getDefaultEnhancers) => getDefaultEnhancers().concat(devToolsEnhancer()),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the state itself

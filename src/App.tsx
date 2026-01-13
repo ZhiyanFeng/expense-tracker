@@ -2,20 +2,18 @@ import {StatusBar} from 'expo-status-bar';
 import {StyleSheet, Text, View} from 'react-native';
 import {SafeAreaProvider} from "react-native-safe-area-context";
 import {Navigation} from "./navigation/configs/staticApiConfig";
-import {Provider} from "react-redux";
-import {store} from "./state/store";
+import {Provider, useDispatch} from "react-redux";
+import {AppDispatch, store} from "./state/store";
+import MainComponent from "./MainComponent";
+
 
 export default function App() {
     return (
-        <SafeAreaProvider>
-            <StatusBar style="dark"/>
-            <Provider store={store}>
-                <Navigation>
+        <Provider store={store}>
+            <MainComponent />
+        </Provider>
+    )
 
-                </Navigation>
-            </Provider>
-        </SafeAreaProvider>
-    );
 }
 
 const styles = StyleSheet.create({
