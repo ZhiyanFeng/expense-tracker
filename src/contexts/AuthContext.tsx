@@ -1,12 +1,7 @@
+import firebase from '@react-native-firebase/app'; // <--- Import this
+import auth, {FirebaseAuthTypes, onAuthStateChanged} from '@react-native-firebase/auth';
 import React, {createContext, ReactNode, useContext, useEffect, useState} from 'react';
-import {
-    getAuth,
-    onAuthStateChanged,
-    User,
-    signOut,
-    signInWithEmailAndPassword
-} from 'firebase/auth';
-import {View} from "react-native";
+import User = FirebaseAuthTypes.User;
 
 // Define the shape of our auth state
 interface AuthContextType {
@@ -22,21 +17,21 @@ interface AuthProviderProps {
     children: ReactNode; // Defines that children can be any valid React Node
 }
 export const AuthProvider = ({children} :AuthProviderProps) => {
+
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
-    const auth = getAuth();
 
     useEffect(() => {
         // Subscriber to update state on login/logout or page refresh
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        const unsubscribe = auth().onAuthStateChanged((currentUser) => {
             setUser(currentUser);
             setLoading(false);
         });
 
-        return () => unsubscribe(); // Cleanup on unmount
+        return () => unsubscribe();
     }, [auth]);
 
-    const logout = () => signOut(auth);
+    const logout = () => auth().signOut();
 
     const value = {
         user,

@@ -38,7 +38,6 @@ function userIsSignedOut() {
 
 
 const RootTabs = createBottomTabNavigator({
-
     groups: {
        LoggedIn: {
            if: userIsSignedIn,

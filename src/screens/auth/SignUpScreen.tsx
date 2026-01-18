@@ -2,17 +2,24 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from "@react-navigation/native";
+import {createUserRecord, signUp} from "../../firebase/actions";
 
 
 const SignUpScreen = () => {
-    const [name, setName] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLaseName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const navigation = useNavigation();
 
     const handleSignup = () => {
-        console.log('Signing up with:', { name, email, password });
+        console.log('Signing up with:', { firstName, lastName, email, password});
+        const user = signUp(email, password).then(user => {
+            if (user) {
+                createUserRecord(user, firstName,lastName,'');
+            }
+        });
         // Add registration logic here
     };
 
@@ -22,7 +29,8 @@ const SignUpScreen = () => {
                 <Text style={styles.title}>Create Account</Text>
                 <Text style={styles.subtitle}>Sign up to get started</Text>
 
-                <TextInput style={styles.input} placeholder="Full Name" value={name} onChangeText={setName} />
+                <TextInput style={styles.input} placeholder="First Name" value={firstName} onChangeText={setFirstName} />
+                <TextInput style={styles.input} placeholder="Last Name" value={lastName} onChangeText={setLaseName} />
                 <TextInput
                     style={styles.input}
                     placeholder="Email"

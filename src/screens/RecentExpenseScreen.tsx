@@ -1,16 +1,22 @@
-import React, {useLayoutEffect} from 'react';
+import React, {useEffect, useLayoutEffect} from 'react';
 import {View, Text, StyleSheet, FlatList, ListRenderItem} from 'react-native';
 import {useNavigation} from "@react-navigation/native";
 import {IconButton} from "../components/IconButton";
 import {useSelector} from "react-redux";
-import {selectResentExpense} from "../state/expenseSlice";
+import {fetchAllExpenses, selectResentExpense} from "../state/expenseSlice";
 import {Expense} from "../types/interfaces";
 import {SafeAreaView} from 'react-native-safe-area-context';
 import FlatListComponent from "../components/FlatListComponent";
 import EditExpenseModal from "../components/EditExpenseModal";
+import {StatusBar} from "expo-status-bar";
+import {useAppDispatch} from "../hooks/hook";
 
 
 const RecentExpenseScreen = ({ /* props */}) => {
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+        // dispatch(fetchAllExpenses());
+    })
     const navigation = useNavigation();
 
     const handleIconPress = () => {
@@ -32,7 +38,7 @@ const RecentExpenseScreen = ({ /* props */}) => {
     const recentExpenses = useSelector(selectResentExpense);
 
     return (
-            <FlatListComponent data={recentExpenses} title={'Last 7 days'}></FlatListComponent>
+        <FlatListComponent data={recentExpenses} title={'Last 7 days'}></FlatListComponent>
     );
 };
 
