@@ -5,6 +5,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import {useDispatch} from "react-redux";
 import {deleteExpense} from "../state/expenseSlice";
 import {useNavigation} from "@react-navigation/native";
+import {useRouter} from "expo-router";
 
 
 interface Props {
@@ -28,13 +29,11 @@ const EditExpenseModal = ({isVisible, id, onClose}: Props) => {
     }, [isVisible]);
 
     const navigation = useNavigation();
+    const router = useRouter();
 
     const handleEdit = () => {
-        navigation.navigate('HomeTab', {
-            screen: 'EditExpense',
-            params: {id:id, label:'Edit Expense'}
-            }
-        );
+        console.log("Edit Expense with Id:", id);
+        router.push(`/expenses/${id}/edit`);
         onClose();
     }
 

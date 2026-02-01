@@ -1,36 +1,28 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {useNavigation} from "@react-navigation/native";
-import {createUserRecord, signUp} from "../../firebase/actions";
+import {useRouter} from "expo-router";
+import {useAuth} from "../../contexts/AuthContext";
 
-
-const SignUpScreen = () => {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLaseName] = useState('');
+const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const navigation = useNavigation();
+    const router = useRouter();
 
-    const handleSignup = () => {
-        console.log('Signing up with:', { firstName, lastName, email, password});
-        const user = signUp(email, password).then(user => {
-            if (user) {
-                createUserRecord(user, firstName,lastName,'');
-            }
-        });
-        // Add registration logic here
+   const { login } = useAuth();
+
+    const handleLogin = () => {
+        console.log('Logging in with:', { email, password });
+        login(email, password);
     };
 
     return (
         <SafeAreaView style={styles.container}>
             <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.content}>
-                <Text style={styles.title}>Create Account</Text>
-                <Text style={styles.subtitle}>Sign up to get started</Text>
+                <Text style={styles.title}>Welcome Back</Text>
+                <Text style={styles.subtitle}>Sign in to continue</Text>
 
-                <TextInput style={styles.input} placeholder="First Name" value={firstName} onChangeText={setFirstName} />
-                <TextInput style={styles.input} placeholder="Last Name" value={lastName} onChangeText={setLaseName} />
                 <TextInput
                     style={styles.input}
                     placeholder="Email"
@@ -47,13 +39,13 @@ const SignUpScreen = () => {
                     secureTextEntry
                 />
 
-                <TouchableOpacity style={styles.button} onPress={handleSignup}>
-                    <Text style={styles.buttonText}>Sign Up</Text>
+                <TouchableOpacity style={styles.button} onPress={handleLogin}>
+                    <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
+                <TouchableOpacity onPress={() => router.navigate('/signup')}>
                     <Text style={styles.footerText}>
-                        Already have an account? <Text style={styles.link}>Login</Text>
+                        Don't have an account? <Text style={styles.link}>Sign Up</Text>
                     </Text>
                 </TouchableOpacity>
             </KeyboardAvoidingView>
@@ -61,7 +53,6 @@ const SignUpScreen = () => {
     );
 };
 
-// Reuse styles from SignIn or define new ones
 const styles = StyleSheet.create({
     container: { flex: 1, backgroundColor: '#fff' },
     content: { flex: 1, justifyContent: 'center', paddingHorizontal: 20 },
@@ -77,7 +68,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#f9f9f9',
     },
     button: {
-        backgroundColor: '#28a745', // Different color for signup
+        backgroundColor: '#007bff',
         height: 50,
         borderRadius: 8,
         justifyContent: 'center',
@@ -86,7 +77,7 @@ const styles = StyleSheet.create({
     },
     buttonText: { color: '#fff', fontSize: 18, fontWeight: 'bold' },
     footerText: { marginTop: 20, textAlign: 'center', color: '#666' },
-    link: { color: '#28a745', fontWeight: 'bold' },
+    link: { color: '#007bff', fontWeight: 'bold' },
 });
 
-export default SignUpScreen;
+export default Login;

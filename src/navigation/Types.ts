@@ -2,11 +2,11 @@
 // import {NavigatorScreenParams} from "@react-navigation/native";
 //
 // export type TabParamList = {
-//     RecentExpense: undefined;
+//     Index: undefined;
 //     AllExpense: undefined;
 // }
 //
-// export type RecentExpenseScreenProps = NativeStackScreenProps<TabParamList, 'RecentExpense'>;
+// export type RecentExpenseScreenProps = NativeStackScreenProps<TabParamList, 'Index'>;
 // export type AllExpenseScreenProps = NativeStackScreenProps<TabParamList, 'AllExpense'>;
 //
 // export type RootStackParamList = {

@@ -1,31 +1,27 @@
 import React, {useEffect, useLayoutEffect} from 'react';
-import {View, Text, StyleSheet, FlatList, ListRenderItem} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {useNavigation} from "@react-navigation/native";
-import {IconButton} from "../components/IconButton";
+import {IconButton} from "../../../components/IconButton";
 import {useSelector} from "react-redux";
-import {fetchAllExpenses, selectResentExpense} from "../state/expenseSlice";
-import {Expense} from "../types/interfaces";
-import {SafeAreaView} from 'react-native-safe-area-context';
-import FlatListComponent from "../components/FlatListComponent";
-import EditExpenseModal from "../components/EditExpenseModal";
-import {StatusBar} from "expo-status-bar";
-import {useAppDispatch} from "../hooks/hook";
+import {selectResentExpense} from "../../../state/expenseSlice";
+import FlatListComponent from "../../../components/FlatListComponent";
+
+import {useAppDispatch} from "../../../hooks/hook";
+import {useRouter} from "expo-router";
 
 
-const RecentExpenseScreen = ({ /* props */}) => {
+const RecentExpense = () => {
     const dispatch = useAppDispatch();
     useEffect(() => {
         // dispatch(fetchAllExpenses());
     })
-    const navigation = useNavigation();
+    const router = useRouter();
 
     const handleIconPress = () => {
-        navigation.navigate('HomeTab',
-            {
-                screen: 'Add',
-            }
-        );
+        router.navigate('/expenses/add');
     }
+
+    const navigation = useNavigation();
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -48,4 +44,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default RecentExpenseScreen;
+export default RecentExpense;

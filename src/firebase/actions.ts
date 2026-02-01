@@ -13,9 +13,9 @@ export const signUp = async (email:string, password:string) => {
 
     } catch (error: unknown) {
         if (error instanceof Error) {
-            if (error.message === 'auth/email-already-in-use') {
+            if (error.message === '(auth)/email-already-in-use') {
                 console.error('That email address is already in use!');
-            } else if (error.message === 'auth/invalid-email') {
+            } else if (error.message === '(auth)/invalid-email') {
                 console.error('That email address is invalid!');
             } else {
                 console.error(error);

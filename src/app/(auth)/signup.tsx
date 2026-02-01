@@ -3,15 +3,16 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, KeyboardAvoidingVi
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from "@react-navigation/native";
 import {createUserRecord, signUp} from "../../firebase/actions";
+import {useRouter} from "expo-router";
 
 
-const SignUpScreen = () => {
+const Signup = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLaseName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const navigation = useNavigation();
+    const router = useRouter();
 
     const handleSignup = () => {
         console.log('Signing up with:', { firstName, lastName, email, password});
@@ -51,7 +52,7 @@ const SignUpScreen = () => {
                     <Text style={styles.buttonText}>Sign Up</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
+                <TouchableOpacity onPress={() => router.navigate('/login')}>
                     <Text style={styles.footerText}>
                         Already have an account? <Text style={styles.link}>Login</Text>
                     </Text>
@@ -89,4 +90,4 @@ const styles = StyleSheet.create({
     link: { color: '#28a745', fontWeight: 'bold' },
 });
 
-export default SignUpScreen;
+export default Signup;

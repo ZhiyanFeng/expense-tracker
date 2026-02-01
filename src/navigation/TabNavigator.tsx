@@ -2,8 +2,8 @@
 // import { StyleSheet} from 'react-native';
 // import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 // import {TabParamList} from "./Types";
-// import RecentExpenseScreen from "../screens/RecentExpenseScreen";
-// import AllExpenseScreen from "../screens/AllExpenseScreen";
+// import Index from "../screens/Index";
+// import AllExpense from "../screens/AllExpense";
 // import {bottomTabNavigatorConfig} from "./configs/optionConfig";
 // import Ionicons from "@expo/vector-icons/Ionicons";
 //
@@ -14,7 +14,7 @@
 // const TabNavigator = ({ /* props */}) => {
 //     return (
 //         <Tab.Navigator screenOptions={bottomTabNavigatorConfig}>
-//             <Tab.Screen name="RecentExpense" component={RecentExpenseScreen} options={{
+//             <Tab.Screen name="Index" component={Index} options={{
 //                 tabBarIcon: ({ color, size, focused }) => (
 //                     <Ionicons
 //                         name={focused ? 'document' : 'document-outline'} // Change icon based on focused state
@@ -22,7 +22,7 @@
 //                         size={size}
 //                     />
 //                 ),}} />
-//             <Tab.Screen name='AllExpense' component={AllExpenseScreen} options={{
+//             <Tab.Screen name='AllExpense' component={AllExpense} options={{
 //                 tabBarIcon: ({ color, size, focused }) => (
 //                 <Ionicons
 //                 name={focused ?"file-tray-full" : 'file-tray-full-outline'} // Change icon based on focused state
